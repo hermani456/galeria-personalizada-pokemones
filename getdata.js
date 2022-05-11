@@ -1,7 +1,7 @@
 const axios = require('axios')
 
 const getPokemon = async () => {
-	const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=150`)
+	const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=470`)
 	return data.results
 }
 
