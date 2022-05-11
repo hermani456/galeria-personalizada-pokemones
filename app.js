@@ -1,12 +1,12 @@
 const http = require('http')
 const fs = require('fs')
 const url = require('url')
-const pokeImgName = require('./getdata')
+const getData = require('./getdata')
 
 const port = 8080
 
 http
-	.createServer((req, res) => {
+	.createServer(async(req, res) => {
 		const urlParse = url.parse(req.url, true)
 		if (urlParse.pathname === '/') {
 			res.writeHead(200, { 'Content-Type': 'text/html' })
@@ -17,7 +17,9 @@ http
 		}
 		if (req.url == '/pokemones') {
 			res.writeHead(200, { 'Content-Type': 'application/json' })
-			res.write(JSON.stringify(pokeImgName))
+			const pokemones = await getData()
+			console.log(pokemones);
+			res.write(JSON.stringify(pokemones))
 			res.end()
 		}
 	})
